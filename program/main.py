@@ -64,7 +64,7 @@ batch_size = 24 * ngpu
 # constants
 segment_size = 4000
 version = ''
-nbr_feature = 10
+nbr_feature = 5
 rnn_len = 800
 
 
