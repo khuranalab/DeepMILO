@@ -1,6 +1,10 @@
 ## Requirement:
 + Dependency packages: tensorflow 1.7, keras 2.2, h5py, numpy
 + Homo_sapiens.GRCh37.75.dna.primary_assembly.fa (downloaded from ensembl) in the current folder
++ you can install the libraries from requirements.txt using the following command:
+
+  `$ sudo pip install -r requirements.txt`
+
 
 ## Folder content:
 * model: contains the loop model

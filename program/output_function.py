@@ -186,12 +186,12 @@ def output_boundary_npa(boundaries, ref_genome_file, segment_size, data_file, la
 
 
 def output_loop(data, ref_genome_file, segment_size, data_file, label_file):
-    '''
-    output loop data (with 2 boundaries) to files
-    data_file: contain IDs of 2 boundaries of loops, boundaries refer to common_data_file for sequence data
-    lable_file: 0: no loop, 1: loop
+    """Output loop data (with 2 boundaries) to files
+    data_file: contain IDs of 2 boundaries of loops, boundaries refer
+    to common_data_file for sequence data
 
-    '''
+    lable_file: 0: no loop, 1: loop
+    """
 
     chrom_list = get_chromlist(ref_genome_file)
 

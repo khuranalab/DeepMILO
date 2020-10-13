@@ -217,12 +217,13 @@ class DataGenerator(keras.utils.Sequence):
 class DataGeneratorLoopSeq(keras.utils.Sequence):
     'Generates sequence data to predict loop'
 
-    def __init__(self, data_file, label_file, batch_size=32, dim=(4000, 10), n_channels=1,
-                 shuffle=True, rnn_len=0, use_reverse=True, nbr_batch=0):
-        '''
+    def __init__(self, data_file, label_file, batch_size=32, dim=(4000, 10),
+                 n_channels=1, shuffle=True, rnn_len=0, use_reverse=True,
+                 nbr_batch=0):
+        """
         rnn_len: len of the RNN layer
         use_reverse: whether to consider the reverse strand (with label ends with _2), can be used during testing
-        '''
+        """
         'Initialization'
 
         self.data_file = data_file
@@ -253,7 +254,12 @@ class DataGeneratorLoopSeq(keras.utils.Sequence):
         try:
             h5_data = h5py.File(data_file, 'r')
             for k, v in h5_data.items():
-                lb = v.value[0]
+                # lb = v.value[0]
+
+                # to avoid warning  'dataset.value has been deprecated',
+                # the code was modify according to the warning's suggestion.
+                lb = v[()][0]
+
                 if not self.use_reverse:
                     tmpk = k
                     if re.search('\.[0-9]+$', k):  # take care of the case .[0-9] is appended
@@ -348,7 +354,8 @@ class DataGeneratorLoopSeq(keras.utils.Sequence):
             np.random.shuffle(self.indexes)
 
     def __data_generation__(self, ids_list_temp):
-        'Generates data containing batch_size samples'  # X : (n_samples, *dim, n_channels)
+        """Generates data containing batch_size samples"""
+        # X : (n_samples, *dim, n_channels)
         # Initialization
         if self.n_channels > 0:
             X1 = np.empty((self.batch_size, *self.dim, self.n_channels))
